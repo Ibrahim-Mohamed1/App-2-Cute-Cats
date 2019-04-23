@@ -6,18 +6,18 @@ class DataProvider extends Component {
     constructor(){
         super()
         this.state={
-            cat: []
+            joke: ''
         }
     }
 
     componentDidMount(){
-        this.getCat()
+        this.getJoke()
     }
 
-    getCat = () => {
-        axios.get(`https://api.thecatapi.com/v1/images/search`, { headers: { "api_-key": `${process.env.REACT_APP_KEY}` } }).then(res => {
+    getJoke = () => {
+        axios.get(`https://icanhazdadjoke.com/slack`).then(res => {
             this.setState({
-                cat: res.data[0].url
+                joke: res.data.attachments[0].fallback
             })
         })
     }
@@ -25,7 +25,7 @@ class DataProvider extends Component {
     render() {
         return (
             <Provider value={{
-                getCat: this.getCat,
+                getJoke: this.getJoke,
                 ...this.state
             }}
             >
