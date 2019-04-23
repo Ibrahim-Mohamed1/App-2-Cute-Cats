@@ -5,13 +5,12 @@ import { withData } from './DataProvider';
 class App extends Component {
 
   render() {
+    console.log(this.props.cat)
     const styles={
-      joke:{
+      cat:{
         width: "90%",
         display:"block",
-        margin:"auto",
-        color:"white",
-        textAlign:"center"
+        margin:"auto"
       },
       button:{
         display: "block",
@@ -22,9 +21,9 @@ class App extends Component {
     }
     return (
       <div>
-        <button style={styles.button} onClick={() => this.props.getJoke()}>Next</button>
+        <button style={styles.button} onClick={() => this.props.getCat()}>Click me</button>
         <br/>
-        <h1 style={styles.joke}>{this.props.joke}</h1>
+        <img style={styles.cat} src={this.props.cat} alt=""/>
       </div>
     );
   }

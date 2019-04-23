@@ -3,21 +3,21 @@ import axios from "axios"
 const { Provider, Consumer } = React.createContext()
 
 class DataProvider extends Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
-            joke: ''
+        this.state = {
+            cat: []
         }
     }
 
-    componentDidMount(){
-        this.getJoke()
+    componentDidMount() {
+        this.getCat()
     }
 
-    getJoke = () => {
-        axios.get(`https://icanhazdadjoke.com/slack`).then(res => {
+    getCat = () => {
+        axios.get(`https://api.thecatapi.com/v1/images/search`, { headers: { "api_-key": `${process.env.REACT_APP_KEY}` } }).then(res => {
             this.setState({
-                joke: res.data.attachments[0].fallback
+                cat: res.data[0].url
             })
         })
     }
@@ -25,7 +25,7 @@ class DataProvider extends Component {
     render() {
         return (
             <Provider value={{
-                getJoke: this.getJoke,
+                getCat: this.getCat,
                 ...this.state
             }}
             >
