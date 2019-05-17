@@ -5,7 +5,6 @@ import { withData } from './DataProvider';
 class App extends Component {
 
   render() {
-    console.log(this.props.cat)
     const styles={
       cat:{
         width: "90%",

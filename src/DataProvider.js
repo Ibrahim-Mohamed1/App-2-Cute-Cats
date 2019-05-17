@@ -19,7 +19,9 @@ class DataProvider extends Component {
             this.setState({
                 cat: res.data[0].url
             })
-        })
+        }).catch(function (error) {
+            window.location.reload()
+        });
     }
 
     render() {
